@@ -16,8 +16,8 @@ int main(void)
 
     // -- Character --
     Character player;
-    Character::Position playerPos = {x : (float)GetScreenWidth() / 2.0f, y : (float)GetScreenHeight() / 2.0f};
-    Character::Position velocity = {x : 0.0f, y : 0.0f};
+    Position playerPos = {x : (float)GetScreenWidth() / 2.0f, y : (float)GetScreenHeight() / 2.0f};
+    Position velocity = {x : 0.0f, y : 0.0f};
 
     // -- Main Loop --
     while (!WindowShouldClose())
