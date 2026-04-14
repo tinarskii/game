@@ -44,19 +44,23 @@ int main(void)
         // -- Input Control --
         if (IsKeyDown(KEY_W))
         {
+            velocity.x = 0.0f;
             velocity.y = -2.0f;
         }
         else if (IsKeyDown(KEY_S))
         {
+            velocity.x = 0.0f;
             velocity.y = 2.0f;
         }
         else if (IsKeyDown(KEY_A))
         {
             velocity.x = -2.0f;
+            velocity.y = 0.0f;
         }
         else if (IsKeyDown(KEY_D))
         {
             velocity.x = 2.0f;
+            velocity.y = 0.0f;
         }
         else if (IsKeyUp(KEY_W) || IsKeyUp(KEY_A) || IsKeyUp(KEY_S) || IsKeyUp(KEY_D))
         {
