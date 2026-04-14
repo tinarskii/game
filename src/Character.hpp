@@ -7,5 +7,8 @@ public:
         float y;
     };
 
+    int chWidth = 35;
+    int chHeight = 60;
+
     int LoadSprite(int posX, int posY);
 };
