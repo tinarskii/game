@@ -1,3 +1,0 @@
-/home/tinarskii/KateProject/game/build/CMakeFiles/my_game.dir
-/home/tinarskii/KateProject/game/build/CMakeFiles/edit_cache.dir
-/home/tinarskii/KateProject/game/build/CMakeFiles/rebuild_cache.dir
