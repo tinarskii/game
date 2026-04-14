@@ -1,5 +1,3 @@
-#include <string>
-#include <vector>
 #include <raylib.h>
 #include "SceneManager.hpp"
 
