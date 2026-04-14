@@ -1,5 +1,3 @@
-#include <vector>
-
 class Character
 {
 public:
