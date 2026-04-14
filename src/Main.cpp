@@ -1,6 +1,7 @@
 #include "SceneManager.hpp"
 #include "Character.hpp"
 #include <raylib.h>
+#include <cstdio>
 
 int main(void)
 {
@@ -62,9 +63,28 @@ int main(void)
             velocity = {x : 0.0f, y : 0.0f};
         }
 
-        // -- Movement Logic --
-        playerPos.x += velocity.x;
-        playerPos.y += velocity.y;
+        #ifndef NDEBUG
+        printf("velocity: %.1f %.1f\n", velocity.x, velocity.y);
+        printf("playerPos: %.1f %.1f\n", playerPos.x, playerPos.y);
+        #endif
+
+        // -- Movement Logic & Boundary Check --
+        if (playerPos.x > 0 && velocity.x < 0.0f) // Move Left
+        {
+            playerPos.x += velocity.x;
+        }
+        if (playerPos.x + player.chWidth < GetScreenWidth() && velocity.x > 0.0f) // Move Right
+        {
+            playerPos.x += velocity.x;
+        }
+        if (playerPos.y > 0 && velocity.y < 0.0f) // Move Up
+        {
+            playerPos.y += velocity.y;
+        }
+        if (playerPos.y + player.chHeight < GetScreenHeight() && velocity.y > 0.0f) // Move Down
+        {
+            playerPos.y += velocity.y;
+        }
 
         // -- Draw --
         BeginDrawing();
