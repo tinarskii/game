@@ -22,7 +22,7 @@ int main(void)
     // -- Main Loop --
     while (!WindowShouldClose())
     {
-        int delta = GetFrameTime();
+        float delta = GetFrameTime() * 144.0f;
 
         // -- Change Scene --
         int key = GetKeyPressed();
@@ -67,34 +67,37 @@ int main(void)
             velocity = {x : 0.0f, y : 0.0f};
         }
 
-        #ifndef NDEBUG
+#ifndef NDEBUG
         printf("velocity: %.1f %.1f\n", velocity.x, velocity.y);
         printf("playerPos: %.1f %.1f\n", playerPos.x, playerPos.y);
-        #endif
+#endif
 
         // -- Movement Logic & Boundary Check --
         if (playerPos.x > 0 && velocity.x < 0.0f) // Move Left
         {
-            playerPos.x += velocity.x;
+            playerPos.x += velocity.x * delta;
         }
         if (playerPos.x + player.chWidth < GetScreenWidth() && velocity.x > 0.0f) // Move Right
         {
-            playerPos.x += velocity.x;
+            playerPos.x += velocity.x * delta;
         }
         if (playerPos.y > 0 && velocity.y < 0.0f) // Move Up
         {
-            playerPos.y += velocity.y;
+            playerPos.y += velocity.y * delta;
         }
         if (playerPos.y + player.chHeight < GetScreenHeight() && velocity.y > 0.0f) // Move Down
         {
-            playerPos.y += velocity.y;
+            playerPos.y += velocity.y * delta;
         }
 
         // -- Draw --
         BeginDrawing();
         ClearBackground(WHITE);
         sceneManager.PlayScene(currentScene);
-        player.LoadSprite(playerPos.x, playerPos.y);
+        if (currentScene != Scene::Title)
+        {
+            player.LoadSprite(playerPos.x, playerPos.y);
+        }
         EndDrawing();
     }
     CloseWindow();
