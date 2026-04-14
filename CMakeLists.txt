@@ -14,5 +14,6 @@ add_executable(
         src/SceneManager.hpp
         src/Character.cpp
         src/Character.hpp
+        src/raygui.h
 )
 target_link_libraries(my_game raylib)

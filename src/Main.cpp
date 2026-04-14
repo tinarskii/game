@@ -93,7 +93,7 @@ int main(void)
         // -- Draw --
         BeginDrawing();
         ClearBackground(WHITE);
-        sceneManager.PlayScene(currentScene);
+        sceneManager.PlayScene(&currentScene);
         if (currentScene != Scene::Title)
         {
             player.LoadSprite(playerPos.x, playerPos.y);

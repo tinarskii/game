@@ -1,12 +1,18 @@
 #include <raylib.h>
 #include "SceneManager.hpp"
 
-int SceneManager::PlayTitleScene()
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
+
+int SceneManager::PlayTitleScene(Scene *scene)
 {
     const char *text = "Title Screen";
     const int fontSize = 48;
     int textWidth = MeasureText(text, fontSize);
     DrawText("Title Screen", (GetScreenWidth() / 2) - textWidth / 2, (GetScreenHeight() / 6) - fontSize / 6, fontSize, LIGHTGRAY);
+    if(GuiButton((Rectangle){GetScreenWidth() / 2, GetScreenHeight()/2, 200, 30}, "Play")) {
+        *scene = Scene::Game;
+    }
     return 0;
 }
 
@@ -16,12 +22,12 @@ int SceneManager::PlayGameScene()
     return 0;
 }
 
-int SceneManager::PlayScene(Scene sceneName)
+int SceneManager::PlayScene(Scene *sceneName)
 {
-    switch (sceneName)
+    switch (*sceneName)
     {
     case Scene::Title:
-        PlayTitleScene();
+        PlayTitleScene(sceneName);
         break;
     case Scene::Game:
         PlayGameScene();
