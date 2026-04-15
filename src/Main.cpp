@@ -10,14 +10,18 @@ int main(void)
     InitWindow(1280, 720, "Raylib");
     SetTargetFPS(144);
 
-    // -- Scene Management --
-    SceneManager sceneManager;
-    Scene currentScene = Scene::Title;
-
     // -- Character --
     Character player;
     Position playerPos = {x : (float)GetScreenWidth() / 2.0f, y : (float)GetScreenHeight() / 2.0f};
     Position velocity = {x : 0.0f, y : 0.0f};
+    Character::Actions actions = Character::Actions::IDLE;
+
+    // -- Load Texture --
+    player.LoadSprite();
+
+    // -- Scene Management --
+    SceneManager sceneManager;
+    Scene currentScene = Scene::Title;
 
     // -- Main Loop --
     while (!WindowShouldClose())
@@ -46,49 +50,34 @@ int main(void)
         {
             velocity.x = 0.0f;
             velocity.y = -2.0f;
+            actions = Character::Actions::W_UP;
         }
         else if (IsKeyDown(KEY_S))
         {
             velocity.x = 0.0f;
             velocity.y = 2.0f;
+            actions = Character::Actions::W_DOWN;
         }
         else if (IsKeyDown(KEY_A))
         {
             velocity.x = -2.0f;
             velocity.y = 0.0f;
+            actions = Character::Actions::W_LEFT;
         }
         else if (IsKeyDown(KEY_D))
         {
             velocity.x = 2.0f;
             velocity.y = 0.0f;
+            actions = Character::Actions::W_RIGHT;
         }
-        else if (IsKeyUp(KEY_W) || IsKeyUp(KEY_A) || IsKeyUp(KEY_S) || IsKeyUp(KEY_D))
+        else
         {
+            actions = Character::Actions::IDLE;
             velocity = {x : 0.0f, y : 0.0f};
         }
 
-#ifndef NDEBUG
-        printf("velocity: %.1f %.1f\n", velocity.x, velocity.y);
-        printf("playerPos: %.1f %.1f\n", playerPos.x, playerPos.y);
-#endif
-
         // -- Movement Logic & Boundary Check --
-        if (playerPos.x > 0 && velocity.x < 0.0f) // Move Left
-        {
-            playerPos.x += velocity.x * delta;
-        }
-        if (playerPos.x + player.chWidth < GetScreenWidth() && velocity.x > 0.0f) // Move Right
-        {
-            playerPos.x += velocity.x * delta;
-        }
-        if (playerPos.y > 0 && velocity.y < 0.0f) // Move Up
-        {
-            playerPos.y += velocity.y * delta;
-        }
-        if (playerPos.y + player.chHeight < GetScreenHeight() && velocity.y > 0.0f) // Move Down
-        {
-            playerPos.y += velocity.y * delta;
-        }
+        player.Move(&playerPos, &velocity, delta);
 
         // -- Draw --
         BeginDrawing();
@@ -96,10 +85,12 @@ int main(void)
         sceneManager.PlayScene(&currentScene);
         if (currentScene != Scene::Title)
         {
-            player.LoadSprite(playerPos.x, playerPos.y);
+            player.DrawSprite(playerPos.x, playerPos.y, actions);
         }
         EndDrawing();
     }
+
+    player.UnloadSprite();
     CloseWindow();
 
     return 0;

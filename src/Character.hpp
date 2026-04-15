@@ -1,3 +1,5 @@
+#include <raylib.h>
+
 struct Position
 {
     float x;
@@ -7,8 +9,16 @@ struct Position
 class Character
 {
 public:
-    int chWidth = 35;
-    int chHeight = 60;
+    enum Actions { W_UP, W_DOWN, W_LEFT, W_RIGHT, R_UP, R_DOWN, R_LEFT, R_RIGHT, IDLE };
+    int frameCounter = 0;
+    int currentFrame = 0;
+    int chWidth;
+    int chHeight;
+    Texture2D texture;
+    Rectangle rect;
 
-    int LoadSprite(int posX, int posY);
+    void DrawSprite(int posX, int posY, Actions actions);
+    void Move(Position *playerPos, Position *velocity, float delta);
+    void LoadSprite(void);
+    void UnloadSprite(void);
 };

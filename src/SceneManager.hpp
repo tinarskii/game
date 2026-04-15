@@ -8,9 +8,9 @@ class SceneManager
 {
 
 private:
-    int PlayTitleScene(Scene *sceneName);
-    int PlayGameScene();
+    void PlayTitleScene(Scene *sceneName);
+    void PlayGameScene();
 
 public:
-    int PlayScene(Scene *sceneName);
+    void PlayScene(Scene *sceneName);
 };

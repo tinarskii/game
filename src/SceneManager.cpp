@@ -4,7 +4,7 @@
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
 
-int SceneManager::PlayTitleScene(Scene *scene)
+void SceneManager::PlayTitleScene(Scene *scene)
 {
     const char *text = "Title Screen";
     const int fontSize = 128;
@@ -20,16 +20,14 @@ int SceneManager::PlayTitleScene(Scene *scene)
     {
         *scene = Scene::Game;
     }
-    return 0;
 }
 
-int SceneManager::PlayGameScene()
+void SceneManager::PlayGameScene()
 {
     DrawText("Game Screen", 100, 100, 28, LIGHTGRAY);
-    return 0;
 }
 
-int SceneManager::PlayScene(Scene *sceneName)
+void SceneManager::PlayScene(Scene *sceneName)
 {
     switch (*sceneName)
     {
@@ -42,5 +40,4 @@ int SceneManager::PlayScene(Scene *sceneName)
     default:
         break;
     }
-    return 0;
 };
