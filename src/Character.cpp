@@ -45,8 +45,8 @@ void Character::DrawSprite(int posX, int posY, Actions actions)
 
     Rectangle dest = {
         (float)posX, (float)posY,
-        (float)chWidth * 2,
-        (float)chHeight * 2,
+        (float)chWidth * scale,
+        (float)chHeight * scale,
     };
 
     DrawTexturePro(texture, rect, dest, (Vector2){0.0f, 0.0f}, 0.0f, WHITE);
@@ -58,7 +58,7 @@ void Character::Move(Position *playerPos, Position *velocity, float delta)
     {
         playerPos->x += velocity->x * delta;
     }
-    if (playerPos->x + chWidth < GetScreenWidth() && velocity->x > 0.0f) // Move Right
+    if (playerPos->x + (chWidth * scale) < GetScreenWidth() && velocity->x > 0.0f) // Move Right
     {
         playerPos->x += velocity->x * delta;
     }
@@ -66,7 +66,7 @@ void Character::Move(Position *playerPos, Position *velocity, float delta)
     {
         playerPos->y += velocity->y * delta;
     }
-    if (playerPos->y + chHeight < GetScreenHeight() && velocity->y > 0.0f) // Move Down
+    if (playerPos->y + (chHeight * scale) < GetScreenHeight() && velocity->y > 0.0f) // Move Down
     {
         playerPos->y += velocity->y * delta;
     }
