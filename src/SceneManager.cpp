@@ -12,9 +12,9 @@ void SceneManager::PlayTitleScene(Scene *scene)
     DrawText("Title Screen", (GetScreenWidth() / 2) - textWidth / 2, (GetScreenHeight() / 6) - fontSize / 6, fontSize, LIGHTGRAY);
 
     float rectW = 300.0f,
-        rectH = 50.0f,
-        rectX = ((float)GetScreenWidth()/2) - rectW/2,
-        rectY = ((float)GetScreenHeight()/2) - rectH/2;
+          rectH = 50.0f,
+          rectX = ((float)GetScreenWidth() / 2) - rectW / 2,
+          rectY = ((float)GetScreenHeight() / 2) - rectH / 2;
     Rectangle playBtnRec = {rectX, rectY, rectW, rectH};
     if (GuiButton(playBtnRec, "Play Game!"))
     {

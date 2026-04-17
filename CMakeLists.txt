@@ -9,11 +9,13 @@ find_package(raylib 3.0 REQUIRED)
 
 add_executable(
     my_game 
+        src/raygui.h
         src/Main.cpp
         src/SceneManager.cpp
         src/SceneManager.hpp
         src/Character.cpp
         src/Character.hpp
-        src/raygui.h
+        src/DialogueManager.cpp
+        src/DialogueManager.hpp
 )
 target_link_libraries(my_game raylib)

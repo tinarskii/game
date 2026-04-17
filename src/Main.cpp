@@ -1,5 +1,7 @@
+#define RAYGUI_IMPLEMENTATION
 #include "SceneManager.hpp"
 #include "Character.hpp"
+#include "DialogueManager.hpp"
 #include <raylib.h>
 #include <cstdio>
 
@@ -22,6 +24,9 @@ int main(void)
     // -- Scene Management --
     SceneManager sceneManager;
     Scene currentScene = Scene::Title;
+
+    // -- Dialogue Management --
+    DialogueManager dialogue;
 
     // -- Main Loop --
     while (!WindowShouldClose())
@@ -86,6 +91,9 @@ int main(void)
         if (currentScene != Scene::Title)
         {
             player.DrawSprite(playerPos.x, playerPos.y, actions);
+            dialogue.DrawMessageBox();
+            const char* text = "Hello! This is a message dialogue dsskdmsakmdaslkmdslakdmlakmdlskamdlsakdmsakldmsalk";
+            dialogue.ShowMessage(text);
         }
         EndDrawing();
     }
