@@ -92,7 +92,7 @@ int main(void)
         {
             player.DrawSprite(playerPos.x, playerPos.y, actions);
             dialogue.DrawMessageBox();
-            const char* text = "Hello! This is a message dialogue dsskdmsakmdaslkmdslakdmlakmdlskamdlsakdmsakldmsalk";
+            const char* text = "Hello! This is a message dialogue abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
             dialogue.ShowMessage(text);
         }
         EndDrawing();

@@ -7,5 +7,5 @@ public:
     int padding = 12;
     bool isDialogueShowing = false;
     void DrawMessageBox();
-    void ShowMessage(const char *text);
+    void ShowMessage(const char *text, int fontSize = 24, Color color = BLACK);
 };
